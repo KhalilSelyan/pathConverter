@@ -64,9 +64,15 @@ export function activate(extensionContext: ExtensionContext): void {
         triangleList.points.push(leftPoint1, rightPoint1, leftPoint2, rightPoint2);
 
         // Add colors for each point
-        const color1 = setColorDependsOnVelocity(8.33, points[i]!.longitudinal_velocity_mps);
-        const color2 = setColorDependsOnVelocity(8.33, points[i + 1]!.longitudinal_velocity_mps);
-        triangleList.colors.push(color1, color1, color2, color2);
+        const color1 = setColorDependsOnVelocity(
+          8.33,
+          points[i]?.longitudinal_velocity_mps ?? 8.33,
+        );
+        const color2 = setColorDependsOnVelocity(
+          8.33,
+          points[i + 1]?.longitudinal_velocity_mps ?? 8.33,
+        );
+        triangleList.colors.push(color1, color2, color1, color2);
 
         // Add indices for two triangles: (leftPoint1, rightPoint1, leftPoint2) and (leftPoint2, rightPoint1, rightPoint2)
         const baseIndex = i * 4;
